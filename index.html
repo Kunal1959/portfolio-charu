@@ -2,1067 +2,478 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Charu Aggarwal | graphic designer</title>
-  <!-- fonts & icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Dil se sorry | Heartfelt Apology</title>
   <style>
-    /* ----- RESET & VARIABLES ----- */
+    /* ---------- RESET & FULLSCREEN BASE ---------- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    :root {
-      --bg: #0b0b0f;
-      --surface: #15151e;
-      --accent: #c084fc;
-      --accent-glow: #a855f7;
-      --text: #f5f5fa;
-      --text-muted: #a1a1b0;
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-body: 'Inter', sans-serif;
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;        /* pure full screen — no scroll, no distractions */
+      background: #0a0c15;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      overflow-x: hidden;
-      line-height: 1.6;
+      font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(circle at 50% 40%, #14182b, #05070f);
     }
 
-    /* ----- CUSTOM CURSOR (optimized) ----- */
-    .cursor-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease-out, background 0.2s;
-      will-change: transform;
-      opacity: 0.8;
-    }
-    .cursor-outline {
-      width: 40px;
-      height: 40px;
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.15s ease-out, opacity 0.2s;
-      will-change: transform;
-      opacity: 0.3;
-    }
-    /* cursor hide on mobile/touch */
-    @media (max-width: 768px) {
-      .cursor-dot, .cursor-outline { display: none; }
-    }
-
-    /* ----- FLOATING BACKGROUND SHAPES (optimized - only opacity) ----- */
-    .floating-shape {
+    /* ---------- subtle organic grain texture (heartfelt imperfection) ---------- */
+    body::before {
+      content: "";
       position: absolute;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle at 30% 30%, rgba(192,132,252,0.2), transparent 70%);
-      border-radius: 50%;
-      filter: blur(60px);
-      z-index: 0;
-      animation: pulse 8s infinite alternate ease-in-out;
-      will-change: opacity;
-    }
-    .shape-1 { top: -100px; left: -100px; }
-    .shape-2 { bottom: -50px; right: -50px; width: 400px; height: 400px; animation-duration: 10s; }
-    .shape-3 { top: 30%; right: 10%; width: 200px; height: 200px; animation-delay: -3s; }
-
-    @keyframes pulse {
-      0% { opacity: 0.3; }
-      100% { opacity: 0.8; }
-    }
-
-    /* ----- GLASS NAVBAR ----- */
-    .navbar {
-      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      padding: 1.5rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      transition: background 0.3s, padding 0.3s, backdrop-filter 0.3s;
-      background: transparent;
-    }
-    .navbar.scrolled {
-      background: rgba(11, 11, 15, 0.7);
-      backdrop-filter: blur(12px);
-      padding: 1rem 5%;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .logo {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.8rem;
-      letter-spacing: -0.02em;
-      background: linear-gradient(130deg, #fff, var(--accent));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .nav-links {
-      display: flex;
-      gap: 3rem;
-      align-items: center;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -6px;
-      left: 0;
-      background: var(--accent);
-      transition: width 0.2s;
-    }
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-    .contact-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(192,132,252,0.4);
-      padding: 0.6rem 1.8rem;
-      border-radius: 40px;
-      backdrop-filter: blur(4px);
-      transition: background 0.2s, box-shadow 0.2s;
-    }
-    .contact-btn:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      box-shadow: 0 0 20px var(--accent);
-    }
-
-    /* ----- MAIN CONTAINER & SECTIONS ----- */
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 5%;
-      position: relative;
-      z-index: 5;
-    }
-
-    section {
-      padding: 100px 0;
-      position: relative;
-    }
-
-    /* ----- HERO SECTION ----- */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 80px;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .hero-content {
-      animation: fadeSlideUp 0.8s ease-out;
-    }
-    .hero-label {
-      font-size: 1rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      display: inline-block;
-      padding: 0.3rem 1rem;
-      border: 1px solid rgba(192,132,252,0.3);
-      border-radius: 40px;
-      backdrop-filter: blur(5px);
-    }
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-    }
-    .hero-title span {
-      background: linear-gradient(50+deg, #fff, #c084fc, #e879f9);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-    .hero-desc {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      max-width: 500px;
-      margin-bottom: 2.5rem;
-      border-left: 3px solid var(--accent);
-      padding-left: 1.5rem;
-    }
-    .hero-btns {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    .btn-primary {
-      background: var(--accent);
-      border: none;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      font-weight: 600;
-      color: #0b0b0f;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 20px rgba(192,132,252,0.3);
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn-primary:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 30px var(--accent);
-    }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--text-muted);
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      transition: border 0.2s, color 0.2s;
-      backdrop-filter: blur(4px);
-    }
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .hero-visual {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .floating-icon {
-      width: 400px;
-      height: 400px;
-      background: var(--grad-card);
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      animation: morph 16s linear infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid rgba(255,255,255,0.05);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 2px rgba(192,132,252,0.2) inset;
-      will-change: border-radius;
-    }
-    .floating-icon i {
-      font-size: 8rem;
-      color: rgba(255,255,255,0.2);
-      filter: drop-shadow(0 0 20px var(--accent));
-    }
-    @keyframes morph {
-      0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-      33% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
-      66% { border-radius: 31% 69% 52% 48% / 44% 68% 32% 56%; }
-      100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    }
-
-    @keyframes fadeSlideUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ----- PORTFOLIO CAROUSEL ----- */
-    .section-title {
-      font-family: var(--font-display);
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    .section-sub {
-      text-align: center;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto 4rem;
-    }
-    .swiper {
-      width: 100%;
-      padding: 20px 0 60px;
-    }
-    .swiper-slide {
-      background: var(--surface);
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: 0 30px 50px -20px black;
-      border: 1px solid rgba(255,255,255,0.03);
-      transition: transform 0.25s, box-shadow 0.3s;
-      will-change: transform;
-      backface-visibility: hidden;
-    }
-    .swiper-slide:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 40px 60px -10px var(--accent-glow);
-      border-color: var(--accent);
-    }
-    .card-img {
-      height: 280px;
-      width: 100%;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: flex-end;
-      padding: 1.5rem;
-      background: linear-gradient(145deg, #2a2a3a, #1a1a28);
-      position: relative;
-      overflow: hidden;
-      cursor: zoom-in;
-    }
-    .card-img img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
       height: 100%;
-      object-fit: cover;
-      opacity: 0.95;
-    }
-    .card-img::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, rgba(11,11,15,0.7) 0%, transparent 70%);
-    }
-    .card-img i {
-      font-size: 4rem;
-      color: white;
-      filter: drop-shadow(0 0 15px var(--accent));
-      z-index: 2;
-      margin-bottom: 0.5rem;
-    }
-    .card-content {
-      padding: 1.8rem 1.5rem;
-    }
-    .card-content h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .card-content p {
-      color: var(--text-muted);
-    }
-    .swiper-pagination-bullet {
-      background: var(--accent);
-      opacity: 0.4;
-    }
-    .swiper-pagination-bullet-active {
-      opacity: 1;
-      background: var(--accent);
-      box-shadow: 0 0 15px var(--accent);
-    }
-    .swiper-button-next, .swiper-button-prev {
-      color: var(--accent);
-      background: rgba(0,0,0,0.4);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      backdrop-filter: blur(8px);
-      transition: background 0.2s;
-    }
-    .swiper-button-next:hover, .swiper-button-prev:hover {
-      background: var(--accent);
-      color: black;
-    }
-
-    /* ----- LIGHTBOX ----- */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 9999;
-      padding: 2rem;
-      backdrop-filter: blur(10px);
-    }
-    .lightbox.open {
-      display: flex;
-    }
-    .lightbox__content {
-      position: relative;
-      max-width: 90vw;
-      max-height: 90vh;
-      width: min(900px, 100%);
-    }
-    .lightbox__img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    }
-    .lightbox__close,
-    .lightbox__nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.6);
-      border: none;
-      color: #fff;
-      font-size: 1.5rem;
-      padding: 0.7rem 0.9rem;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: background 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lightbox__close {
-      top: 1rem;
-      right: 1rem;
-      transform: none;
-      font-size: 1.2rem;
-      padding: 0.5rem 0.7rem;
-    }
-    .lightbox__close:hover,
-    .lightbox__nav:hover {
-      background: rgba(255,255,255,0.15);
-    }
-    .lightbox__nav.prev {
-      left: -2.5rem;
-    }
-    .lightbox__nav.next {
-      right: -2.5rem;
-    }
-
-    /* ----- ABOUT SECTION ----- */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    .about-text h2 {
-      font-size: 2.8rem;
-      font-family: var(--font-display);
-      line-height: 1.2;
-    }
-    .highlight {
-      color: var(--accent);
-    }
-    .about-text p {
-      margin: 1.5rem 0;
-      color: var(--text-muted);
-    }
-    .personal-details {
-      background: rgba(255,255,255,0.02);
-      padding: 1.5rem;
-      border-radius: 24px;
-      border-left: 4px solid var(--accent);
-      margin: 2rem 0;
-    }
-    .personal-details p {
-      margin: 0.5rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .personal-details i {
-      color: var(--accent);
-      width: 24px;
-      font-size: 1.2rem;
-    }
-    .skill-bars {
-      margin-top: 2rem;
-    }
-    .skill-item {
-      margin-bottom: 1.5rem;
-    }
-    .skill-info {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.4rem;
-    }
-    .progress-bar {
-      height: 8px;
-      background: #262632;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent), #e879f9);
-      border-radius: 10px;
-      transition: width 1s cubic-bezier(0.2, 0.9, 0.3, 1);
-    }
-    .about-stats {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 3rem;
-    }
-    .stat {
-      text-align: center;
-    }
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .about-visual {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-    .profile-frame {
-      width: 350px;
-      height: 450px;
-      background: var(--grad-card);
-      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-      border: 3px solid rgba(192,132,252,0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 30px 40px -20px black;
-      animation: morph 16s infinite alternate;
-      overflow: hidden;
-      will-change: border-radius;
-    }
-    .profile-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform 0.3s ease;
-    }
-    .profile-frame:hover img {
-      transform: scale(1.05);
-    }
-    .fallback-icon {
-      font-size: 5rem;
-      color: rgba(255,255,255,0.2);
-      display: none;
-    }
-
-    /* ----- CONTACT SECTION ----- */
-    .contact-card {
-      background: rgba(21, 21, 30, 0.6);
-      backdrop-filter: blur(12px);
-      border-radius: 50px;
-      padding: 4rem;
-      border: 1px solid rgba(255,255,255,0.03);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-    .contact-info h3 {
-      font-size: 2rem;
-      font-family: var(--font-display);
-    }
-    .contact-detail {
-      margin: 2rem 0;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .contact-detail i {
-      font-size: 1.8rem;
-      color: var(--accent);
-    }
-    .social-links {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .social-links a {
-      color: var(--text);
-      font-size: 1.8rem;
-      transition: color 0.2s, transform 0.2s;
-    }
-    .social-links a:hover {
-      color: var(--accent);
-      transform: translateY(-3px);
-      filter: drop-shadow(0 0 8px var(--accent));
-    }
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .input-group {
-      position: relative;
-    }
-    .input-group input, .input-group textarea {
-      width: 100%;
-      background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 30px;
-      padding: 1.2rem 1.8rem;
-      color: white;
-      font-size: 1rem;
-      transition: border 0.2s, box-shadow 0.2s;
-    }
-    .input-group textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
-    .input-group label {
-      position: absolute;
-      left: 1.8rem;
-      top: 1.2rem;
-      color: var(--text-muted);
-      transition: 0.2s;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjUiIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDYiLz48L3N2Zz4=');
+      background-repeat: repeat;
+      opacity: 0.2;
       pointer-events: none;
+      z-index: 0;
     }
-    .input-group input:focus, .input-group textarea:focus {
-      border-color: var(--accent);
-      outline: none;
-      box-shadow: 0 0 20px rgba(192,132,252,0.3);
+
+    /* ---------- main content layer ---------- */
+    .apology-container {
+      position: relative;
+      z-index: 2;
+      max-width: 95vw;
+      padding: 1rem;
+      animation: fadeInGentle 1.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
     }
-    .input-group input:focus ~ label, .input-group textarea:focus ~ label,
-    .input-group input:not(:placeholder-shown) ~ label, .input-group textarea:not(:placeholder-shown) ~ label {
-      top: -0.8rem;
-      left: 1.2rem;
+
+    /* ---------- the HEARTFELT "sorry" ---------- */
+    .sorry-text {
+      font-size: clamp(4.2rem, 18vw, 14rem);
+      font-weight: 550;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      color: #fef1e0;
+      text-shadow: 0 0 8px rgba(255, 200, 170, 0.3), 0 8px 25px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+      transition: all 0.3s ease;
+      animation: gentleHeartbeat 3.8s infinite ease-in-out;
+      display: inline-block;
+      transform-origin: center;
+      cursor: default;
+      word-break: keep-all;
+    }
+
+    /* emotional underline — appears slowly (sincerity in motion) */
+    .sorry-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .underline-heart {
+      display: block;
+      width: 0%;
+      height: 2.5px;
+      background: linear-gradient(90deg, #f3bc9c, #d97a6e, #f3bc9c);
+      border-radius: 4px;
+      margin: 0.9rem auto 0 auto;
+      box-shadow: 0 0 6px rgba(230, 120, 100, 0.4);
+      animation: expandSoulLine 1.2s ease-out forwards;
+      animation-delay: 0.9s;
+    }
+
+    /* ----- heartfelt messages (spoken from the heart) ----- */
+    .message-deep {
+      margin-top: 2rem;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Montserrat', sans-serif;
+      font-size: clamp(0.9rem, 3.5vw, 1.25rem);
+      font-weight: 350;
+      letter-spacing: 0.3px;
+      color: #e7dfd3;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: slideUpFade 0.9s forwards;
+      animation-delay: 1s;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.55;
+      backdrop-filter: blur(1px);
+    }
+
+    .second-line {
+      margin-top: 0.8rem;
+      font-size: clamp(0.8rem, 3vw, 1rem);
+      font-weight: 330;
+      color: #cbc3b4;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: slideUpFade 1s forwards;
+      animation-delay: 1.4s;
+      font-style: normal;
+      letter-spacing: 0.5px;
+    }
+
+    /* small humble signature */
+    .heart-tag {
+      margin-top: 2.5rem;
       font-size: 0.8rem;
-      background: var(--surface);
-      padding: 0 0.5rem;
-      color: var(--accent);
-    }
-    .submit-btn {
-      background: var(--accent);
-      border: none;
-      padding: 1.2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 15px var(--accent);
-    }
-    .submit-btn:hover {
-      background: white;
-      color: black;
-      box-shadow: 0 0 30px white;
+      font-family: 'Inter', monospace;
+      font-weight: 300;
+      color: #b3a48f;
+      opacity: 0;
+      animation: fadeSlow 2s forwards;
+      animation-delay: 2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      letter-spacing: 0.8px;
     }
 
-    /* ----- FOOTER ----- */
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      border-top: 1px solid rgba(255,255,255,0.03);
-      color: var(--text-muted);
+    .heart-icon {
+      display: inline-block;
+      font-size: 0.9rem;
+      animation: softPulseRed 2s infinite;
     }
 
-    /* ----- RESPONSIVE ----- */
-    @media (max-width: 900px) {
-      .hero-grid, .about-grid, .contact-card {
-        grid-template-columns: 1fr;
+    /* ---- animations : pure emotion ---- */
+    @keyframes fadeInGentle {
+      0% {
+        opacity: 0;
+        transform: scale(0.98);
       }
-      .nav-links {
-        display: none;
+      100% {
+        opacity: 1;
+        transform: scale(1);
       }
-      .navbar {
-        justify-content: center;
+    }
+
+    @keyframes gentleHeartbeat {
+      0% {
+        transform: scale(1);
+        text-shadow: 0 0 8px rgba(255, 200, 170, 0.3), 0 8px 20px rgba(0, 0, 0, 0.3);
       }
-      .floating-icon, .profile-frame {
-        width: 280px;
-        height: 280px;
+      50% {
+        transform: scale(1.018);
+        text-shadow: 0 0 16px rgba(255, 180, 130, 0.5), 0 12px 28px rgba(0, 0, 0, 0.4);
+        color: #fff9f0;
       }
-      .profile-frame {
-        height: 350px;
-        width: 280px;
+      100% {
+        transform: scale(1);
+        text-shadow: 0 0 8px rgba(255, 200, 170, 0.3), 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    @keyframes expandSoulLine {
+      0% {
+        width: 0%;
+        opacity: 0;
+      }
+      40% {
+        opacity: 0.7;
+      }
+      100% {
+        width: 180px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUpFade {
+      0% {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlow {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes softPulseRed {
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.12);
+        opacity: 1;
+        text-shadow: 0 0 3px #ffb48a;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+    }
+
+    /* optional subtle glow on hover (makes it more organic) */
+    .sorry-text:hover {
+      text-shadow: 0 0 24px rgba(255, 190, 130, 0.6), 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: text-shadow 0.3s ease;
+    }
+
+    /* responsive tuning: extra sincerity on mobile */
+    @media (max-width: 600px) {
+      .underline-heart {
+        margin-top: 0.5rem;
+      }
+      .message-deep {
+        margin-top: 1.4rem;
+        padding: 0 0.6rem;
+      }
+      .heart-tag {
+        margin-top: 1.8rem;
+      }
+      @keyframes expandSoulLine {
+        100% {
+          width: 130px;
+        }
+      }
+    }
+
+    /* for very small screens, keep line length elegant */
+    @media (max-width: 420px) {
+      .sorry-text {
+        font-size: clamp(3.2rem, 14vw, 7rem);
+      }
+    }
+
+    /* subtle vignette effect - emotional depth */
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.35) 95%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* gentle floating particles (feelings in air) - minimal & emotional */
+    .floating-particle {
+      position: absolute;
+      background: rgba(245, 200, 170, 0.2);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatSoft 12s infinite linear;
+    }
+
+    /* small random particle effect - like silent remorse */
+    @keyframes floatSoft {
+      0% {
+        transform: translateY(0vh) translateX(0vw) scale(0.4);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.4;
+      }
+      80% {
+        opacity: 0.25;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(20vw) scale(1);
+        opacity: 0;
       }
     }
   </style>
+  <!-- elegant serif + clean sans for supporting text -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- custom cursor (lightweight) -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
 
-  <!-- floating bg shapes -->
-  <div class="floating-shape shape-1"></div>
-  <div class="floating-shape shape-2"></div>
-  <div class="floating-shape shape-3"></div>
-
-  <!-- navbar -->
-  <nav class="navbar" id="navbar">
-    <div class="logo">✨ Charu Aggarwal</div>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#portfolio">Work</a>
-      <a href="#about">Studio</a>
-      <a href="#contact" class="contact-btn">Let's talk</a>
-    </div>
-  </nav>
-
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <span class="hero-label">graphic designer</span>
-          <h1 class="hero-title">crafting visual stories that linger</h1>
-          <p class="hero-desc">I'm Charu Aggarwal — I breathe life into brands, whispers into typography, and emotions into motion.</p>
-          <div class="hero-btns">
-            <a href="#portfolio" class="btn-primary">see the magic</a>
-            <a href="#contact" class="btn-outline">connect</a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="floating-icon">
-            <i class="fas fa-paint-brush"></i>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTFOLIO CAROUSEL -->
-    <section id="portfolio">
-      <div class="container">
-        <h2 class="section-title">recent <span class="highlight">creations</span></h2>
-        <p class="section-sub">Each piece is a conversation — bold, subtle, and unforgettable.</p>
-      </div>
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="card-img">
-              <img src="images/2.png" alt="Recent creation: 2" />
-            </div>
-            <div class="card-content">
-              <h3>2</h3>
-              <p>visual concept</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card-img">
-              <img src="images/4.png" alt="Recent creation: 4" />
-            </div>
-            <div class="card-content">
-              <h3>4</h3>
-              <p>visual concept</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card-img">
-              <img src="images/5.png" alt="Recent creation: 5" />
-            </div>
-            <div class="card-content">
-              <h3>5</h3>
-              <p>visual concept</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card-img">
-              <img src="images/Best%20MBBS%20Consultant%20in%20Greater%20%20Noida.png" alt="Best MBBS Consultant in Greater Noida" />
-            </div>
-            <div class="card-content">
-              <h3>MBBS consultant</h3>
-              <p>branding</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card-img">
-              <img src="images/Best%20MBBS%20Consultant%20in%20Greater%20Noida.png" alt="Best MBBS Consultant in Greater Noida" />
-            </div>
-            <div class="card-content">
-              <h3>MBBS consultant</h3>
-              <p>branding</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card-img">
-              <img src="images/GEN-Z%20The%20Lost%20Hustlers_Book_Cover.png" alt="GEN-Z The Lost Hustlers Book Cover" />
-            </div>
-            <div class="card-content">
-              <h3>GEN-Z book</h3>
-              <p>cover design</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card-img">
-              <img src="images/Visiting%20Card.png" alt="Visiting card" />
-            </div>
-            <div class="card-content">
-              <h3>visiting card</h3>
-              <p>print</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card-img">
-              <img src="images/Your%20paragraph%20text%20(1).jpg" alt="Your paragraph text" />
-            </div>
-            <div class="card-content">
-              <h3>paragraph text</h3>
-              <p>typography</p>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card-img">
-              <img src="images/poster.png" alt="Poster" />
-            </div>
-            <div class="card-content">
-              <h3>poster</h3>
-              <p>layout</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-    </section>
-
-    <!-- ABOUT + personal details -->
-    <section id="about">
-      <div class="container about-grid">
-        <div class="about-text">
-          <h2>where pixels <br><span class="highlight">& poetry</span> collide</h2>
-          <p>Hi, I'm Charu Aggarwal — graphic designer with a soft spot for bold geometry and dreamy gradients.</p>
-          
-          <div class="personal-details">
-            <p><i class="fas fa-map-marker-alt"></i> Greater Noida, India, India</p>
-            <p><i class="fas fa-briefcase"></i> 6+ months experience</p>
-            <p><i class="fas fa-graduation-cap"></i> Greater Noida</p>
-            <p><i class="fas fa-heart"></i> Branding · Typography · Motion</p>
-          </div>
-
-          <div class="skill-bars">
-            <div class="skill-item">
-              <div class="skill-info"><span>brand identity</span> <span>95%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="95"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info"><span>typography</span> <span>90%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info"><span>motion design</span> <span>82%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="82"></div></div>
-            </div>
-          </div>
-          <div class="about-stats">
-            <div class="stat"><span class="stat-number">6+</span> <div>months</div></div>
-            <div class="stat"><span class="stat-number">50+</span> <div>projects</div></div>
-          </div>
-        </div>
-        <div class="about-visual">
-          <div class="profile-frame">
-              <img src="images/charu aggarwal.jpeg" alt="Charu Aggarwal" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <i class="fas fa-crown fallback-icon"></i>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container contact-card">
-        <div class="contact-info">
-          <h3>let's create <span class="highlight">something</span> unforgettable</h3>
-          <div class="contact-detail"><i class="fas fa-phone-alt"></i> +91 98765 43210</div>
-          <div class="contact-detail"><i class="fas fa-map-pin"></i> Greater Noida, India / remote</div>
-          <div class="social-links">
-          </div>
-        </div>
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('✨ thanks for reaching out!'); this.reset();">
-          <div class="input-group">
-            <input type="text" id="name" placeholder=" " >
-            <label for="name">your name</label>
-          </div>
-          <div class="input-group">
-            <input type="email" id="email" placeholder=" " >
-            <label for="email">email</label>
-          </div>
-          <div class="input-group">
-            <textarea id="message" placeholder=" " ></textarea>
-            <label for="message">what's your story?</label>
-          </div>
-          <button class="submit-btn" type="submit">send a flare 🚀</button>
-        </form>
-      </div>
-    </section>
-
-    <footer>
-      <p>© 2025 Charu Aggarwal - designed by <a href="https://deeplinkcreators.com" target="_blank" rel="noopener noreferrer">Deeplink Creators</a> for Dreamers</p>
-    </footer>
-  </main>
-
-  <!-- lightbox (for clicking creations) -->
-  <div class="lightbox" aria-hidden="true">
-    <div class="lightbox__content" role="dialog" aria-label="View creation">
-      <button class="lightbox__close" aria-label="Close">✕</button>
-      <button class="lightbox__nav prev" aria-label="Previous">‹</button>
-      <img class="lightbox__img" src="" alt="" />
-      <button class="lightbox__nav next" aria-label="Next">›</button>
-    </div>
+<div class="apology-container">
+  <!-- main sorry with heartfelt underline -->
+  <div>
+    <h1 class="sorry-text">sorry</h1>
+    <div class="underline-heart"></div>
   </div>
 
-  <!-- scripts optimized -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
-    (function() {
-      // custom cursor with requestAnimationFrame for smoothness
-      const cursorDot = document.querySelector('.cursor-dot');
-      const cursorOutline = document.querySelector('.cursor-outline');
+  <!-- deep emotional text — feels like a real confession -->
+  <div class="message-deep">
+    I know words are never enough,<br>
+    but every letter carries the weight of my regret.
+  </div>
+  <div class="second-line">
+    From the depths of my heart — I truly, deeply mean this.
+  </div>
+  
+  <!-- small vulnerable signature with heart -->
+  <div class="heart-tag">
+    <span class="heart-icon">❤️‍🩹</span> 
+    <span>with all my remorse, i'm sorry</span>
+    <span class="heart-icon">🕊️</span>
+  </div>
+</div>
+
+<!-- generate subtle floating particles to mimic emotional weight & sincerity -->
+<script>
+  (function createTearsOfRegret() {
+    // gentle particle effect — not distracting, just adds atmospheric depth
+    const particleCount = 35;
+    const bodyEl = document.body;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('floating-particle');
       
-      if (cursorDot && cursorOutline) {
-        let mouseX = 0, mouseY = 0;
-        let dotX = 0, dotY = 0;
-        let outlineX = 0, outlineY = 0;
+      // random size between 2px and 9px
+      const size = Math.random() * 7 + 2;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.bottom = '-20px';
+      particle.style.opacity = '0';
+      particle.style.background = `rgba(235, 180, 140, ${Math.random() * 0.25 + 0.1})`;
+      particle.style.filter = 'blur(0.4px)';
+      
+      // random duration & delay
+      const duration = Math.random() * 12 + 7;
+      const delay = Math.random() * 15;
+      particle.style.animation = `floatSoft ${duration}s infinite linear`;
+      particle.style.animationDelay = delay + 's';
+      particle.style.animationTimingFunction = 'ease-in-out';
+      
+      bodyEl.appendChild(particle);
+    }
+    
+    // additional tiny sparkles — like sincere glimmers
+    const sparkleCount = 18;
+    for (let i = 0; i < sparkleCount; i++) {
+      const spark = document.createElement('div');
+      spark.classList.add('floating-particle');
+      const sizeSpark = Math.random() * 3 + 1.5;
+      spark.style.width = sizeSpark + 'px';
+      spark.style.height = sizeSpark + 'px';
+      spark.style.left = Math.random() * 100 + '%';
+      spark.style.top = Math.random() * 80 + '%';
+      spark.style.background = `rgba(255, 220, 170, 0.5)`;
+      spark.style.filter = 'blur(0.8px)';
+      spark.style.animation = `floatSoft ${Math.random() * 16 + 9}s infinite reverse`;
+      spark.style.animationDelay = Math.random() * 10 + 's';
+      spark.style.opacity = '0.2';
+      bodyEl.appendChild(spark);
+    }
+  })();
+</script>
+
+<!-- additional micro-interaction: heartbeat of text on click/tap (optional, increases emotional connect) -->
+<script>
+  (function addEmotionalTouch() {
+    const sorryElem = document.querySelector('.sorry-text');
+    if (sorryElem) {
+      // making the text interactive so that the user feels the apology responds to them
+      sorryElem.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // small sincere ripple effect
+        this.style.transform = 'scale(1.02)';
+        this.style.transition = 'transform 0.2s cubic-bezier(0.2, 1.2, 0.8, 1)';
+        setTimeout(() => {
+          if (this) this.style.transform = '';
+        }, 280);
         
-        window.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-        });
-        
-        function animateCursor() {
-          // smooth following
-          dotX += (mouseX - dotX) * 0.3;
-          dotY += (mouseY - dotY) * 0.3;
-          outlineX += (mouseX - outlineX) * 0.15;
-          outlineY += (mouseY - outlineY) * 0.15;
-          
-          cursorDot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%, -50%)`;
-          cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
-          
-          requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-      }
-
-      // navbar scroll
-      const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        // create a subtle floating heart to emphasize sincerity
+        const heartSpan = document.createElement('span');
+        heartSpan.innerHTML = '💔';
+        heartSpan.style.position = 'fixed';
+        heartSpan.style.left = (e.clientX || window.innerWidth/2) + 'px';
+        heartSpan.style.top = (e.clientY || window.innerHeight/2) + 'px';
+        heartSpan.style.fontSize = '22px';
+        heartSpan.style.pointerEvents = 'none';
+        heartSpan.style.opacity = '0.8';
+        heartSpan.style.transform = 'translate(-50%, -50%)';
+        heartSpan.style.transition = 'all 1s ease-out';
+        heartSpan.style.zIndex = '999';
+        document.body.appendChild(heartSpan);
+        setTimeout(() => {
+          heartSpan.style.opacity = '0';
+          heartSpan.style.transform = 'translate(-50%, -80%) scale(1.6)';
+          setTimeout(() => heartSpan.remove(), 1000);
+        }, 30);
       });
+    }
+    
+    // optional additional sincere message if user stays long (shows deeper apology)
+    let timerShown = false;
+    const showExtraRemorse = () => {
+      if (timerShown) return;
+      timerShown = true;
+      const deepMsg = document.createElement('div');
+      deepMsg.textContent = '❝ I carry this regret with every breath. Please forgive me. ❞';
+      deepMsg.style.position = 'fixed';
+      deepMsg.style.bottom = '15px';
+      deepMsg.style.left = '0';
+      deepMsg.style.right = '0';
+      deepMsg.style.textAlign = 'center';
+      deepMsg.style.fontFamily = "'Inter', sans-serif";
+      deepMsg.style.fontSize = '11px';
+      deepMsg.style.fontWeight = '300';
+      deepMsg.style.letterSpacing = '0.5px';
+      deepMsg.style.color = '#bba98c';
+      deepMsg.style.backgroundColor = 'rgba(0,0,0,0.4)';
+      deepMsg.style.backdropFilter = 'blur(6px)';
+      deepMsg.style.padding = '6px 14px';
+      deepMsg.style.width = 'fit-content';
+      deepMsg.style.margin = '0 auto';
+      deepMsg.style.borderRadius = '40px';
+      deepMsg.style.bottom = '20px';
+      deepMsg.style.zIndex = '10';
+      deepMsg.style.opacity = '0';
+      deepMsg.style.transition = 'opacity 1.2s ease';
+      document.body.appendChild(deepMsg);
+      setTimeout(() => { deepMsg.style.opacity = '0.7'; }, 1800);
+      setTimeout(() => { if(deepMsg) deepMsg.style.opacity = '0'; setTimeout(() => deepMsg.remove(), 2000); }, 10000);
+    };
+    setTimeout(showExtraRemorse, 4800);
+  })();
+</script>
 
-      // Swiper carousel with performance options
-      const swiper = new Swiper('.mySwiper', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        speed: 600,
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-        },
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        breakpoints: {
-          640: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 }
-        }
-      });
-
-      // Lightbox for clicking on recent creations
-      const lightbox = document.querySelector('.lightbox');
-      const lightboxImg = lightbox.querySelector('.lightbox__img');
-      const closeBtn = lightbox.querySelector('.lightbox__close');
-      const prevBtn = lightbox.querySelector('.lightbox__nav.prev');
-      const nextBtn = lightbox.querySelector('.lightbox__nav.next');
-
-      const slideImages = Array.from(document.querySelectorAll('.mySwiper .swiper-slide:not(.swiper-slide-duplicate) img'))
-        .map(img => ({ src: img.src, alt: img.alt || '' }));
-
-      let lightboxIndex = 0;
-
-      function updateLightbox(index) {
-        const item = slideImages[index];
-        if (!item) return;
-        lightboxImg.src = item.src;
-        lightboxImg.alt = item.alt;
-        lightboxIndex = index;
-      }
-
-      function openLightbox(index) {
-        updateLightbox(index);
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden', 'false');
-      }
-
-      function closeLightbox() {
-        lightbox.classList.remove('open');
-        lightbox.setAttribute('aria-hidden', 'true');
-      }
-
-      function showPrev() {
-        const nextIndex = (lightboxIndex - 1 + slideImages.length) % slideImages.length;
-        openLightbox(nextIndex);
-        swiper.slidePrev();
-      }
-
-      function showNext() {
-        const nextIndex = (lightboxIndex + 1) % slideImages.length;
-        openLightbox(nextIndex);
-        swiper.slideNext();
-      }
-
-      document.querySelectorAll('.mySwiper .swiper-slide').forEach((slide) => {
-        slide.addEventListener('click', () => openLightbox(swiper.realIndex));
-      });
-
-      closeBtn.addEventListener('click', closeLightbox);
-      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
-      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
-
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-      });
-
-      window.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('open')) return;
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') showPrev();
-        if (e.key === 'ArrowRight') showNext();
-      });
-
-      // Simple scroll reveal (using Intersection Observer for performance)
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // animate progress bars
-            if (entry.target.classList.contains('skill-bars')) {
-              entry.target.querySelectorAll('.progress-fill').forEach(bar => {
-                const width = bar.getAttribute('data-width') || '0';
-                bar.style.width = width + '%';
-              });
-            }
-          }
-        });
-      }, { threshold: 0.3 });
-
-      // observe sections
-      document.querySelectorAll('section').forEach(section => observer.observe(section));
-      // observe skill bars separately
-      document.querySelector('.skill-bars') && observer.observe(document.querySelector('.skill-bars'));
-    })();
-  </script>
+<!-- style for extra particles container (ensures full screen no overflow) -->
+<style>
+  .floating-particle {
+    position: absolute;
+    will-change: transform;
+    pointer-events: none;
+    user-select: none;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+  /* ensure fullscreen immersive experience */
+  .apology-container {
+    width: 100%;
+    backdrop-filter: blur(0px);
+  }
+  /* subtle shimmer to main text while reading */
+  @keyframes softGlowText {
+    0% { text-shadow: 0 0 5px rgba(255,190,140,0.2); }
+    100% { text-shadow: 0 0 12px rgba(255,190,140,0.4); }
+  }
+  .sorry-text {
+    animation: gentleHeartbeat 3.8s infinite ease-in-out, softGlowText 3s alternate infinite;
+  }
+  /* no scrollbars, absolute full screen purity */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+</style>
 </body>
 </html>
